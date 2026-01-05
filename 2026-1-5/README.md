@@ -7,7 +7,7 @@
 
 ` 參見 filetype_judge.png`
 
-3. 使用ghidra來進行逆向拆解，將crackme.c編譯過後刪掉， 新建專案->press I->選擇crackme->雙擊crackme開啟codebrowser->分析 ，可以看到中間的是組合語言，右側的decompiler是ghidra嘗試將組合語言轉回c語言虛擬碼
+3. 使用ghidra來進行逆向拆解，將crackme.c編譯過後刪掉， 新建專案->press I->選擇crackme->雙擊crackme開啟codebrowser->分析 ，可以看到中間的是組合語言，右側的decompiler是ghidra嘗試將組合語言轉回c語言虛擬碼(可以在反編譯的地方看到原密碼SuperSecret2026)
 
 ` 參見 ghidra_original_content.png, ghidra_outcome.png`
 
