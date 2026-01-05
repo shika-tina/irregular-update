@@ -13,6 +13,6 @@
 
 4. 使用ncat進行雙向溝通，`ncat -lnvp 12345`(接收方監聽12345端口)，`ncat -v [接收端ip] 12345`(發送方連接接收方12345端口)，連接虛擬機端口時很順利，但反過來就遇到time out的問題，調適了很久主機上的防毒軟體(tcp排除+解除ip封鎖)才順利實現兩邊都可以雙向溝通
 
-` 參見 ncat_outcome1.png ncat_outcome2.png`
+` 參見 ncat_outcome1.png, ncat_outcome2.png`
 
 ` 參見 issue1.png`
