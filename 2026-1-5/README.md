@@ -8,5 +8,5 @@
 3. 使用 ghidra 來進行逆向拆解，將 crackme.c 編譯過後刪掉，新建專案->press I 選擇crackme->雙擊crackme開啟 codebrowser->分析
 ` -> ghidra_outcome.png, ncat_outcome2.png`
 
-5. 可以看到中間的是組合語言，右側的decompiler是ghidra嘗試將組合語言轉回c語言虛擬碼
+4. 可以看到中間的是組合語言，右側的decompiler是ghidra嘗試將組合語言轉回c語言虛擬碼
 ` -> issue1.png`
