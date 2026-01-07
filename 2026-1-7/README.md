@@ -14,7 +14,7 @@
 
     5. 結果 : 可以看到原本解不開猜不透的密碼(crackme)，只需要隨便敲個字串就能輕鬆通過身份驗證(crackme_ghidra)，當然你也可以不修改任何東西，在一開始就能看到密碼是什麼(左邊的 Decompile 視窗)
 
-2. <span style="color: red;">gdb</span>
+2. <span style="color: red;"> gdb </span>
 
     gdb 是 kali 內建的工具，`gdb ./crackme`打開gdb
     ```
