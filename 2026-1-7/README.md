@@ -1,7 +1,26 @@
 # 更改c語言編譯過後的檔案，進行逆向拆解
 有使用到以exeditor(一個十六進位修改器), ghidra以及gdb(兩個都是可以檢視組合語言的工具，ghidra同樣也可以修改內容)
 
-簡單編寫一個c腳本，名為crackme.c，內容大致上為如果使用者輸入"SuperSecret2026"，那麼就通過身份驗證，如果錯誤，就會顯示密碼錯誤，接下來將編譯過後的檔案留下來進行拆解，原本的c腳本丟掉
+簡單編寫一個c腳本，
+```
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char password[20];
+    printf("請輸入授權密碼以解鎖進階功能: ");
+    scanf("%19s", password);
+
+    // 這是要破解的目標：硬編碼的密碼
+    if (strcmp(password, "SuperSecret2026") == 0) {
+        printf("驗證成功！存取權限已授予。\n");
+    } else {
+        printf("密碼錯誤，存取遭拒。\n");
+    }
+    return 0;
+}
+```
+名為crackme.c，如果使用者輸入"SuperSecret2026"，那麼就通過身份驗證，如果錯誤，就會顯示密碼錯誤，接下來將編譯過後的檔案留下來進行拆解，原本的c腳本丟掉
 
 1. <span style="color: red;">ghidra</span>
     1. 安裝 `sudo apt install ghidra` -> `sudo apt install ghidra`
