@@ -3,18 +3,18 @@
 
 簡單編寫一個c腳本，名為crackme.c，內容大致上為如果使用者輸入"SuperSecret2026"，那麼就通過身份驗證，如果錯誤，就會顯示密碼錯誤，接下來將編譯過後的檔案留下來進行拆解，原本的c腳本丟掉
 
-1. ghidra
+1. <span style="color:red">ghidra</span>
     1. 安裝 `sudo apt install ghidra` -> `sudo apt install ghidra`
 
     2. 打開ghidra，在資料夾新增專案 -> 按 I -> 新增編譯過後的crackme -> 雙擊crackme打開小綠龍圖示
 
-    3. 找到main函式，可以看到 `CALL strcmp`，意思是比較並將結果進行回傳到 rax 暫存器裡，如果為0 那麼相同，下一行 `TEST EAX, EAX`，意思是比較暫存器裡的數字，接著會在下方看到 `JNZ lab_001011cb`，JNZ 的意思是 Jump if Not Zero, 再找到前面的 "Bytes" 欄位，會看到類似 74 0a 或 75 0a 的十六進位數值，74 是 `JZ` (Jump if Zero) 的機器碼。75 是 `JNZ` (Jump if Not Zero) 的機器碼。記下這個位址 001011a9。
+    3. 找到main函式，可以看到 `CALL strcmp`，意思是比較並將結果進行回傳到 rax 暫存器裡，如果為0 那麼相同，下一行 `TEST EAX, EAX`，意思是比較暫存器裡的數字，接著會在下方看到 `JNZ lab_001011cb`，JNZ 的意思是 Jump if Not Zero, 再找到前面的 "Bytes" 欄位，會看到類似 74 0a 或 75 0a 的十六進位數值，74 是 `JZ` (Jump if Zero) 的機器碼。75 是 `JNZ` (Jump if Not Zero) 的機器碼。並記下位址 001011cb。
 
     4. 點擊 JNZ 那一行，按下shift ctrl G 開啟修改器，將原本的 JNZ 改成 JZ，讓判斷條件變成反而只要輸入不是"SuperSecret2026"那麼就會通過驗證，接著保存、退出
 
     5. 結果 : 可以看到原本解不開猜不透的密碼(crackme)，只需要隨便敲個字串就能輕鬆通過身份驗證(crackme_ghidra)，當然你也可以不修改任何東西，在一開始就能看到密碼是什麼(左邊的 Decompile 視窗)
 
-2. gdb
+2. <span style="color:red">gdb</span>
 gdb 是 kali 內建的工具，`gdb ./crackme`打開gdb
 ```
 layout asm -> 顯示出所有執行的命令
