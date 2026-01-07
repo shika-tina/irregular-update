@@ -26,7 +26,7 @@ int main() {
 1. <span style="color: red;"> GHIDRA </span>
     1. 安裝 `sudo apt update` -> `sudo apt install ghidra`
 
-    2. 打開ghidra，在資料夾新增專案 -> 按 I -> 新增編譯過後的crackme -> 雙擊crackme打開小綠龍圖示
+    2. 打開ghidra，在資料夾新增專案 -> 按 I -> 新增編譯過後的crackme -> 雙擊crackme打開十六進位檢視器(會出現小綠龍圖示)
 
     3. 找到main函式，可以看到 `CALL strcmp`，意思是比較並將結果進行回傳到 rax 暫存器裡，下一行 `TEST EAX, EAX`，意思是比較暫存器裡的數字，如果為0 那麼相同，接著在下方 `JNZ lab_001011cb`，JNZ 的意思是 Jump if Not Zero, 找到前面的 "Bytes" 欄位，會看到類似 74 0a 或 75 0a 的十六進位數值，74 是 `JZ` (Jump if Zero) 的機器碼。75 是 `JNZ` (Jump if Not Zero) 的機器碼。
 
@@ -50,7 +50,7 @@ int main() {
     ```
     rdi, rsi, rax皆是暫存器，rdi存放使用者輸入，rsi存放程式中的字串，rax存放回傳值
 
-    #### 結果: 在最後我們可以看到，同樣雖然密碼輸入不正確，但藉由在執行的過程中改變暫存器的值來"騙過"判斷(TEST EAX, EAX)
+    #### 結果: 在最後我們可以看到，同樣雖然密碼輸入不正確，但藉由在執行的過程中改變暫存器的值(strcmp回傳值)來"騙過"判斷(TEST EAX, EAX)
 
 3. <span style="color: red;"> HEXEDITOR </span> <br>
     這是一個可以以十六進制更改檔案裡面內容的工具，前面提到 JNZ (不為零則跳轉) 的十六進位是 75，如果我們將它改成 JZ (為零則跳轉, 十六進位是 74)，或者將它改成 NOP (No Operation, 十六進位是 0x90)，這樣反而密碼錯誤會驗證成功
