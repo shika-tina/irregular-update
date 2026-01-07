@@ -3,7 +3,7 @@
 
 簡單編寫一個c腳本，名為crackme.c，內容大致上為如果使用者輸入"SuperSecret2026"，那麼就通過身份驗證，如果錯誤，就會顯示密碼錯誤，接下來將編譯過後的檔案留下來進行拆解，原本的c腳本丟掉
 
-1. <span style="color:red">ghidra</span>
+1. ghidra
     1. 安裝 `sudo apt install ghidra` -> `sudo apt install ghidra`
 
     2. 打開ghidra，在資料夾新增專案 -> 按 I -> 新增編譯過後的crackme -> 雙擊crackme打開小綠龍圖示
@@ -14,7 +14,7 @@
 
     5. 結果 : 可以看到原本解不開猜不透的密碼(crackme)，只需要隨便敲個字串就能輕鬆通過身份驗證(crackme_ghidra)，當然你也可以不修改任何東西，在一開始就能看到密碼是什麼(左邊的 Decompile 視窗)
 
-2. <span style="color:red">gdb</span>
+2. gdb
 gdb 是 kali 內建的工具，`gdb ./crackme`打開gdb
 ```
 layout asm -> 顯示出所有執行的命令
