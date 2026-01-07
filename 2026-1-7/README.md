@@ -37,18 +37,19 @@ int main() {
 2. <span style="color: red;"> gdb </span> <br>
     gdb 是 kali 內建的工具，`gdb ./crackme`打開gdb
     ```
-    layout asm -> 顯示出所有執行的命令
-    disas main -> 定位main函式位置
-    break main -> 在main函式下斷點
-    break *0x5555555551b6 -> 在這個步驟下斷點
-    r  ->  run執行
-    n  ->  next下一步
-    x/s $rsi  ->查看rsi存放的字串
-    x/s $rdi  ->查看rdi存放的字串
-    x/s $rax  ->查看rax存放的字串
-    rdi, rsi, rax皆是暫存器，rdi存放使用者輸入，rsi存放程式中的字串，rax存放回傳值
-    set $rax = 0 -> 將rax儲存的值設為0，這將會使記憶體認為 strcmp 的回傳值為0
+    layout asm   ->顯示出所有執行的命令
+    disas main   ->定位main函式位置
+    break main   ->在main函式下斷點
+    break *0x5555555551b6   ->在這個步驟下斷點
+    r   ->run執行
+    n   ->next下一步
+    x/s $rsi   ->查看rsi存放的字串
+    x/s $rdi   ->查看rdi存放的字串
+    x/s $rax   ->查看rax存放的字串
+    set $rax = 0  ->將rax儲存的值設為0，這將會使記憶體認為 strcmp 的回傳值為0
     ```
+    rdi, rsi, rax皆是暫存器，rdi存放使用者輸入，rsi存放程式中的字串，rax存放回傳值
+
     #### 結果: 在最後我們可以看到，同樣雖然密碼輸入不正確，但藉由在執行的過程中改變暫存器的值來"騙過"判斷(TEST EAX, EAX)
 
 3. <span style="color: red;"> hexeditor </span> <br>
@@ -56,12 +57,12 @@ int main() {
 
     1. 關於查找file offset的知識
     
-    記憶體位址 (Virtual Address)：在 Ghidra 看到的 001011b8 是程式被載入記憶體後的「預期位址」。
-    檔案偏移 (File Offset)：hexeditor 打開的是硬碟上的原始檔案，位址是從 0 開始算的。
-    位址隨機化 (ASLR)：現代 Linux 程式通常是 PIE (Position Independent Executable)，它們在檔案中的位址與在 Ghidra 顯示的虛擬位址完全不同。
-    
-    這會導致在 ghidra 中看到的 001011b8 還有 gdb 中run一遍後看到的 0x5555555551b8 這些座標並不被hexeditor認得，但我們可以透過在打開gdb還沒run過的時候，查看我們要修改的指令的在檔案中的檔案偏移(file offset)
-    
+        記憶體位址 (Virtual Address)：在 Ghidra 看到的 001011b8 是程式被載入記憶體後的「預期位址」。
+        檔案偏移 (File Offset)：hexeditor 打開的是硬碟上的原始檔案，位址是從 0 開始算的。
+        位址隨機化 (ASLR)：現代 Linux 程式通常是 PIE (Position Independent Executable)，它們在檔案中的位址與在 Ghidra 顯示的虛擬位址完全不同。
+        
+        這會導致在 ghidra 中看到的 001011b8 還有 gdb 中run一遍後看到的 0x5555555551b8 這些座標並不被hexeditor認得，但我們可以透過在打開gdb還沒run過的時候，查看我們要修改的指令的在檔案中的檔案偏移(file offset)
+        
         > 例如：位址是 001011b8，但 File Offset 可能是 0x11b8 或 0x1b8。
 
     2. 接著找到file offset後，ctrl T 查找目標指令的file offset，可以看到75 11的，可以改成 74(JZ)或是 90 90(NOP), 儲存並退出
