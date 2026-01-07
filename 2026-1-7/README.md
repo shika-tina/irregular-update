@@ -61,6 +61,7 @@ int main() {
     位址隨機化 (ASLR)：現代 Linux 程式通常是 PIE (Position Independent Executable)，它們在檔案中的位址與在 Ghidra 顯示的虛擬位址完全不同。
     ```
     這會導致在 ghidra 中看到的 001011b8 還有 gdb 中run一遍後看到的 0x5555555551b8 這些座標並不被hexeditor認得，但我們可以透過在打開gdb還沒run過的時候，查看我們要修改的指令的在檔案中的檔案偏移(file offset)
+
         > 例如：位址是 001011b8，但 File Offset 可能是 0x11b8 或 0x1b8。
 
     2. 接著找到file offset後，ctrl T 查找目標指令的file offset，可以看到75 11的，可以改成 74(JZ)或是 90 90(NOP), 儲存並退出
