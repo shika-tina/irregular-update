@@ -23,7 +23,7 @@ int main() {
 名為crackme.c，如果使用者輸入"SuperSecret2026"，那麼就通過身份驗證，如果錯誤，就會顯示密碼錯誤 <br>
 將編譯過後的crackme留下來進行拆解，原本的crackme.c丟掉
 
-1. <span style="color: red;">ghidra</span>
+1. <span style="color: red;"> GHIDRA </span>
     1. 安裝 `sudo apt update` -> `sudo apt install ghidra`
 
     2. 打開ghidra，在資料夾新增專案 -> 按 I -> 新增編譯過後的crackme -> 雙擊crackme打開小綠龍圖示
@@ -34,7 +34,7 @@ int main() {
 
     #### 結果 : 可以看到原本解不開猜不透的密碼(crackme)，只需要隨便敲個字串就能輕鬆通過身份驗證(crackme_ghidra)，當然你也可以不修改任何東西，在一開始就能看到密碼是什麼(左邊的 Decompile 視窗)
 
-2. <span style="color: red;"> gdb </span> <br>
+2. <span style="color: red;"> GDB </span> <br>
     gdb 是 kali 內建的工具，`gdb ./crackme`打開gdb
     ```
     layout asm   ->顯示出所有執行的命令
@@ -52,7 +52,7 @@ int main() {
 
     #### 結果: 在最後我們可以看到，同樣雖然密碼輸入不正確，但藉由在執行的過程中改變暫存器的值來"騙過"判斷(TEST EAX, EAX)
 
-3. <span style="color: red;"> hexeditor </span> <br>
+3. <span style="color: red;"> HEXEDITOR </span> <br>
     這是一個可以以十六進制更改檔案裡面內容的工具，前面提到 JNZ (不為零則跳轉) 的十六進位是 75，如果我們將它改成 JZ (為零則跳轉, 十六進位是 74)，或者將它改成 NOP (No Operation, 十六進位是 0x90)，這樣反而密碼錯誤會驗證成功
 
     1. 關於查找file offset的知識
@@ -68,3 +68,6 @@ int main() {
     2. 接著找到file offset後，ctrl T 查找目標指令的file offset，可以看到75 11的，可以改成 74(JZ)或是 90 90(NOP), 儲存並退出
 
     #### 結果: 執行後可以發現兩個更改的方法都適用，無論輸入的是什麼都會顯示身份驗證成功
+
+4.  額外的紀錄
+    1. 使用hexeditor時，不要使用十六進位查找(search for hex)，功能非常不穩定
