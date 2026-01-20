@@ -1,3 +1,3 @@
 # ;)
 a record of experiment using windows notepad <br>
-no_resize version is a little weird after zoom in too far
+no_resize version will cause length-to-width ratio imbalance after zoom in too far
