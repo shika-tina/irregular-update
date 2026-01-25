@@ -8,7 +8,7 @@
 # 新增專用節點
 cd ComfyUI/custom_nodes
 git clone https://github.com/jtydhr88/ComfyUI-qwenmultiangle.git
-# 然後重啟comfyUI
+然後重啟comfyUI
 ```
 ```bash
 # 新增工作流
