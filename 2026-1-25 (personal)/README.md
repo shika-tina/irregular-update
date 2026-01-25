@@ -13,7 +13,7 @@ git clone https://github.com/jtydhr88/ComfyUI-qwenmultiangle.git
 ```bash
 # 新增工作流
 下載 https://huggingface.co/fal/Qwen-Image-Edit-2511-Multiple-Angles-LoRA/tree/main 裡的 comfyui-workflow-multiple-angles.json
-放到 C:\Users\Henry\Documents\ComfyUI\user\default\workflows
+放到 ComfyUI\user\default\workflows
 ```
 ```bash
 # 適配模型下載
