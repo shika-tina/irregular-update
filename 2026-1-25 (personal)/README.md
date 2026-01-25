@@ -24,3 +24,6 @@ git clone https://github.com/jtydhr88/ComfyUI-qwenmultiangle.git
 add node->image->multiangle
 將IMAGE接入節點的input，將節點的output接上正向命令的prompt
 ```
+
+## 結論
+非常成功，但諸如紋理、解頗學，手指等等的還是會偶爾出現一些怪異如果照片的主體不清晰或者某些手、四肢被遮擋
