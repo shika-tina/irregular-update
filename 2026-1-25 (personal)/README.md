@@ -31,6 +31,6 @@ add node->image->multiangle
 
 ## 備註
 
-1. 切記不要從網路上下載模型，因為有許多版本或者相似名稱的模型(例如2509和2511是不同的，也有分bf16和fp8)，下載工作流後，由ComfyUI自動偵測缺少哪些模型並下載就行
+1. 切記不要從網路上下載模型，因為有許多版本或者相似名稱的模型(例如2509和2511是不同的，也有分bf16和fp8)，先下載工作流後，由ComfyUI自動偵測缺少哪些模型並下載就行，而不是先準備模型
 
 2. 這個lora是由qwen在huggingface上發表的，他和傳統的stable diffusion不同，它是基於qwen-image-edit-2511這個模型，所以無稐是lora或者diffusion-model接無法在invokeAI這種幾乎只支持stable-diffusion的平台上使用
