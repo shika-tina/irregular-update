@@ -28,7 +28,7 @@ add node->image->multiangle
 ```
 
 ## 文件結構
-
+```
 📂 ComfyUI/
 ├─── 📂 models/
 │     └── 📂 diffusion_models/
@@ -40,7 +40,7 @@ add node->image->multiangle
 │     │    └── qwen_image_vae.safetensors
 │     └── 📂 text_encoders/
 │          └── qwen_2.5_vl_7b_fp8_scaled.safetensors
-
+```
 
 ## 結論
 
