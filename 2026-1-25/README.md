@@ -52,10 +52,7 @@ add node->image->multiangle
 
 2. 這個lora是由qwen在huggingface上發表的，他和傳統的stable diffusion不同，它是基於qwen-image-edit-2511這個模型，所以無稐是lora或者diffusion-model接無法在invokeAI這種幾乎只支持stable-diffusion的平台上使用
 
-
-
-
-
+<br><br>
 # 圖片生成3D模型
 
 ## 參考:
